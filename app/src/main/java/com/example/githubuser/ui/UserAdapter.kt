@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.githubuser.data.model.Profile
 import com.example.githubuser.data.model.UserDetail
 import com.example.githubuser.databinding.ComponentUserBinding
 
@@ -55,3 +56,5 @@ class UserAdapter: RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
 
 }
+
+

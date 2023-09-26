@@ -1,0 +1,39 @@
+package com.example.githubuser.ui
+
+import com.example.githubuser.data.model.UserDetail
+import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import com.example.githubuser.data.model.Profile
+import com.example.githubuser.data.networking.RetrofitClient
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
+class ProfileFollowerViewModel: ViewModel() {
+    val listFollowers = MutableLiveData<ArrayList<Profile>>()
+
+    fun setListFollowers(username: String){
+        RetrofitClient.apiInstance
+            .getFollowers(username)
+            .enqueue(object : Callback<ArrayList<Profile>>{
+                override fun onResponse(
+                    call: Call<ArrayList<Profile>>,
+                    response: Response<ArrayList<Profile>>
+                ){
+                    if (response.isSuccessful){
+                        listFollowers.postValue(response.body())
+                    }
+                }
+                override fun onFailure(call: Call<ArrayList<Profile>>, t: Throwable){
+                    t.message?.let { Log.d("Failure", it) }
+                }
+            })
+    }
+
+    fun getListFollower(): LiveData<ArrayList<Profile>>{
+        return listFollowers
+    }
+}
+

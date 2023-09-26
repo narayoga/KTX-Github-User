@@ -7,7 +7,6 @@ import android.view.KeyEvent
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.githubuser.R
 import com.example.githubuser.data.model.UserDetail
 import com.example.githubuser.databinding.ActivityMainBinding
 

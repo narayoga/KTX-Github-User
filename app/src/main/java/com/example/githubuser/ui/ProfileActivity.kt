@@ -24,6 +24,8 @@ class ProfileActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val username = intent.getStringExtra(EXTRA_USERNAME)
+        val bundle = Bundle()
+        bundle.putString(EXTRA_USERNAME, username)
 
         viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(ProfileViewModel::class.java)
 
@@ -45,7 +47,7 @@ class ProfileActivity : AppCompatActivity() {
 
 
 
-        val profilePagerAdapter = ProfilePagerAdapter(this, supportFragmentManager)
+        val profilePagerAdapter = ProfilePagerAdapter(this, supportFragmentManager, bundle)
         binding.apply {
             viewPager.adapter = profilePagerAdapter
             tabs.setupWithViewPager(viewPager)
