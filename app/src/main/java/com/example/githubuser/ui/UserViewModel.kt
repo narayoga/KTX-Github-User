@@ -9,7 +9,6 @@ import com.example.githubuser.data.model.User
 import com.example.githubuser.data.model.UserDetail
 import com.example.githubuser.data.networking.RetrofitClient
 import retrofit2.Response
-import retrofit2.http.Query
 
 class UserViewModel: ViewModel() {
     val listUser = MutableLiveData<ArrayList<UserDetail>>()
