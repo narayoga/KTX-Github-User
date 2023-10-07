@@ -1,16 +1,19 @@
 package com.example.githubuser.ui
 
-import android.telecom.Call
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.githubuser.data.model.User
 import com.example.githubuser.data.model.UserDetail
+import com.example.githubuser.data.model.local.SettingPreferences
 import com.example.githubuser.data.networking.RetrofitClient
+import kotlinx.coroutines.launch
 import retrofit2.Response
 
-class UserViewModel: ViewModel() {
+class UserViewModel(private val pref: SettingPreferences): ViewModel() {
     val listUser = MutableLiveData<ArrayList<UserDetail>>()
 
     fun setSearchUsers(query: String) {
@@ -32,5 +35,15 @@ class UserViewModel: ViewModel() {
 
     fun getUsers(): LiveData<ArrayList<UserDetail>>{
         return  listUser
+    }
+
+    fun getThemeSettings(): LiveData<Boolean> {
+        return pref.getThemeSetting().asLiveData()
+    }
+
+    fun saveThemeSetting(isDarkModeActive: Boolean) {
+        viewModelScope.launch {
+            pref.saveThemeSetting(isDarkModeActive)
+        }
     }
 }

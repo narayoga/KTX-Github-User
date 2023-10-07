@@ -9,30 +9,32 @@ import retrofit2.http.Headers
 import retrofit2.http.Path
 import retrofit2.http.Query
 
+const val token = "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"
 interface Api {
 //    search user
     @GET("search/users")
-    @Headers("Authorization: token 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")
+    @Headers("Authorization: token $token")
     fun getUsers(
         @Query("q") query: String
     ): Call<User>
 
 //    detail user
     @GET("users/{username}")
-    @Headers("Authorization: token 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")
+    @Headers("Authorization: token $token")
     fun getProfile(
         @Path("username") username: String?
     ): Call<Profile>
 
     @GET("users/{username}/followers")
-    @Headers("Authorization: token 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")
+    @Headers("Authorization: token $token")
     fun getFollowers(
         @Path("username") username: String
     ): Call<ArrayList<UserDetail>>
 
     @GET("users/{username}/following")
-    @Headers("Authorization: token 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")
+    @Headers("Authorization: token $token")
     fun getFollowing(
         @Path("username") username: String
     ): Call<ArrayList<UserDetail>>
 }
+
